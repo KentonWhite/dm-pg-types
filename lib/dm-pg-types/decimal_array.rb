@@ -18,7 +18,11 @@ module DataMapper
 
 
       def load(value)
-        super.map(&:to_f) if value
+        if(@scale == 0)
+          super.map(&:to_i) if value
+        else
+          super.map(&:to_f) if value
+        end
       end
     end # class DecimalArray
   end # class Property
